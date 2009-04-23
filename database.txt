@@ -1,0 +1,14 @@
+User
+username, password, email, //bugs
+
+Bug	
+id#, creator, project, project_version, date, time, title, description, status
+
+
+/*
+actionID(plural)
+
+Action
+actionID, action_taken, user, date, time
+
+*/
