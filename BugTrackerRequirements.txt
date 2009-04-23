@@ -1,0 +1,11 @@
+BugTracker
+
+Requirements:
+Identify and authenticate individual user
+Store bugs by user, project, version#, date, and bug #
+Categorize with, Bug, UI, Feature Reuest
+Rate: 
+	Importance - Critical, High, Medium, Low
+	Severity - Critical, High, Medium, Low
+Status:
+	Reported, Fixed, NotFixed, Closed
