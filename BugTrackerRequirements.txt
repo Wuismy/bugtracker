@@ -2,10 +2,40 @@ BugTracker
 
 Requirements:
 Identify and authenticate individual user
-Store bugs by user, project, version#, date, and bug #
+Store bugs by user, project, version#, date, and bug #, title, description
 Categorize with, Bug, UI, Feature Reuest
 Rate: 
 	Importance - Critical, High, Medium, Low
 	Severity - Critical, High, Medium, Low
 Status:
-	Reported, Fixed, NotFixed, Closed
+	Reported, Assigned, Fixed, Closed
+Each action has a user: Report, Change Status
+	
+
+-Users should be able to register w/ usernames and passwords, create some restrictions on the length and format. Store passwords in an encrypted format.
+-Users should be able to login (use a cookie to save sessions?)	
+-Log out
+-Site needs to check whether a particular user is logged in, and access data for that user
+-Users should be able to change their passwords
+-Reset Password
+-Input all the information
+-Display the bugs, be able to sort (display only a given project, sort by user (reported, and assigned))
+	Displays the title, the ID#, a
+-Be able to view an individual bug, show history, can make changes
+-Can delete a bug
+
+
+Database stuff:
+
+-Each user has actions, and login info
+-Each report has actions with users, project, version#, date, title, description, bug#
+
+
+Flow:
+Login.
+	-Forgot password? Hit up password recovery page.
+See the bugs you can see.
+	-Can Click on a bug
+	-Can sort
+-Change Password
+-
