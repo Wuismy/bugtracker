@@ -31,11 +31,3 @@ Database stuff:
 -Each report has actions with users, project, version#, date, title, description, bug#
 
 
-Flow:
-Login.
-	-Forgot password? Hit up password recovery page.
-See the bugs you can see.
-	-Can Click on a bug
-	-Can sort
--Change Password
--
