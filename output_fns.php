@@ -73,8 +73,8 @@
 	<tr>
 		<td colspan="2">Members log in here:</td>
 	<tr>
-		<td>Username:<td>
-		<td><input type="text" name="username"/>
+		<td>Email Address:<td>
+		<td><input type="text" name="email_adr"/>
 		</td>
 	</tr>
 	<tr>
@@ -95,7 +95,77 @@
 	</form>	
 	<?php
 }
+
+
+function display_registration_form() {
+?>
+ <form method="post" action="register_new.php">
+ <table bgcolor="#cccccc">
+	<tr>
+     <td>Name:</td>
+     <td><input type="text" name="real_name" size="30" maxlength="100"/></td></tr>   
+    <tr>
+	<tr>
+     <td>Email address:</td>
+     <td><input type="text" name="email" size="30" maxlength="100"/></td></tr>   
+   <tr>
+     <td>Password:</td>
+     <td valign="top"><input type="password" name="password"
+         size="16" maxlength="16"/></td></tr>
+   <tr>
+     <td>Confirm password:</td>
+     <td><input type="password" name="password2" size="16" maxlength="16"/></td></tr>
+   <tr>
+     <td colspan=2 align="center">
+     <input type="submit" value="Register"></td></tr>
+ </table></form>
+<?php
+
+}
 	
 	
-	
-	
+function display_password_form() {
+  // display html change password form
+?>
+   <br />
+   <form action="change_password.php" method="post">
+   <table width="250" cellpadding="2" cellspacing="0" bgcolor="#cccccc">
+   <tr><td>Old password:</td>
+       <td><input type="password" name="old_password"
+            size="16" maxlength="16"/></td>
+   </tr>
+   <tr><td>New password:</td>
+       <td><input type="password" name="new_password"
+            size="16" maxlength="16"/></td>
+   </tr>
+   <tr><td>Repeat new password:</td>
+       <td><input type="password" name="new_password2"
+            size="16" maxlength="16"/></td>
+   </tr>
+   <tr><td colspan="2" align="center">
+       <input type="submit" value="Change password"/>
+   </td></tr>
+   </table>
+   <br />
+<?php
+}
+
+
+function display_forgot_form() {
+  // display HTML form to reset and email password
+?>
+   <br />
+   <form action="forgot_password.php" method="post">
+   <table width="250" cellpadding="2" cellspacing="0" bgcolor="#cccccc">
+   <tr><td>Enter your email address:</td>
+       <td><input type="text" name="email_adr" size="16" maxlength="16"/></td>
+   </tr>
+   <tr><td colspan=2 align="center">
+       <input type="submit" value="Change password"/>
+   </td></tr>
+   </table>
+   <br />
+
+}
+
+

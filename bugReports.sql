@@ -2,15 +2,15 @@ create database bugReports;
 use bugReports;
 
 create table Users (
-	username varchar(16) not null primary key,
-	password char(32) not null,
-	email varchar(50) not null
+	email varchar(50) not null primary key,
+	username varchar(16) not null,
+	password char(32) not null
 );
 
 
 create table Bugs (
 	bugID int unsigned not null auto_increment primary key,
-	username varchar(16) not null,
+	email varchar(50) not null,
 	project varchar(30) not null,
 	project_version varchar(8) not null,
 	bug_date date not null,
