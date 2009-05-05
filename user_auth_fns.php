@@ -67,6 +67,7 @@
 	
 	  if (isset($_SESSION['valid_user']))  {
 	      echo "Logged in as ".$_SESSION['valid_user'].".<br />";
+		  //TODO: Get real_name from email address...maybe
 	  } else {
 	     // they are not logged in
 	     do_html_heading('Not Logged In');
@@ -100,7 +101,7 @@
 	}
 	
 		
-
+	// TODO:  figure out the dictionary
 	function get_random_word($min_length, $max_length) {
 	// grab a random word from dictionary between the two lengths
 	// and return it
@@ -108,7 +109,7 @@
 	   // generate a random word
 	  $word = '';
 	  // remember to change this path to suit your system
-	  $dictionary = '/usr/dict/words';  // the ispell dictionary
+	  $dictionary = './dict.txt';  // the ispell dictionary
 	  $fp = @fopen($dictionary, 'r');
 	  if(!$fp) {
 	    return false;
@@ -130,4 +131,69 @@
 	  $word = trim($word); // trim the trailing \n from fgets
 	  return $word;
 	}
-		
+
+
+	
+	function reset_password($email) {
+	// set password for user to a random value
+	// return the new password or false on failure
+	// get a random dictionary word b/w 6 and 13 chars in length
+	  
+	  $new_password = get_random_word(6, 12);
+
+	  if($new_password == false) {
+	    throw new Exception('Could not generate new password.');
+	  }
+
+	  // add a number  between 0 and 999 to it
+	  
+	  $rand_number = rand(0, 999);
+	  $new_password .= $rand_number;
+
+
+	  // set user's password to this in database or return false
+	  $conn = db_connect();
+	  $result = $conn->query("update User
+	                          set password = sha1('".$new_password."')
+	                          where email = '".$email."'");
+	  if (!$result) {
+	    throw new Exception('Could not change password.');  // not changed
+	  } else {
+	    return $new_password;  // changed successfully
+	  }
+	}
+
+function notify_password($email, $password) {
+// notify the user that their password has been changed
+
+// CommentedCuz: Shouldn't have to look up email because it's sent in aleady
+
+/*
+    $conn = db_connect();
+    $result = $conn->query("select email from User
+                            where email='".$email."'");
+    if (!$result) {
+      throw new Exception('SQL Error: Couldn\'t find email address');
+    } else if ($result->num_rows == 0) {
+      throw new Exception('User not in database.');
+      // username not in db
+    } else {	
+	  $row = $result->fetch_object();
+	  $email = $row->email;
+	*/ 
+	
+	  $from = "From: andrew@ProjectMayhem.com \r\n";
+	  $mesg = "Your BugTracker password has been changed to ".$password."\r\n"
+			  ."Please change it next time you log in.\r\n";
+
+	  if (mail($email, 'BugTracker login information', $mesg, $from)) {
+		return true;
+	  } else {
+		throw new Exception('Could not send email.');
+	  }
+    }
+}
+
+?>
+
+
