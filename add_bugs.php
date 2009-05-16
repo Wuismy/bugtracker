@@ -10,10 +10,22 @@
 			throw new Exception('Please fill out all fields');
 		}
 	
-		// Need to automagically add to db: bugID, email, bug_date, bug_time	
-		//Add bug, repassing post because the vars are filled out
-		$email = $_SESSION['valid_user'];
-		add_bug($_POST, $email);
+		
+		
+	
+		$form_vars = array(	'project' => $_POST['project'], 
+							'project_version' => $_POST['project_version'], 
+							'title' => $_POST['title'], 
+							'description' => $_POST['description'], 
+							);
+		
+		// Make the form input safe for db entry
+		foreach($form_vars as $key => $value) {
+			$value = addslashes(htmlspecialchars(strip_tags($value)));
+		}
+		
+		
+		add_bug($form_vars);
 		echo 'Bug Added.';
 		
 		//Get the bugs the user has access to

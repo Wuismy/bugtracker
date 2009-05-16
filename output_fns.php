@@ -97,75 +97,116 @@
 }
 
 
-function display_registration_form() {
-?>
- <form method="post" action="register_new.php">
- <table bgcolor="#cccccc">
-	<tr>
-     <td>Name:</td>
-     <td><input type="text" name="real_name" size="30" maxlength="100"/></td></tr>   
-    <tr>
-	<tr>
-     <td>Email address:</td>
-     <td><input type="text" name="email" size="30" maxlength="100"/></td></tr>   
-   <tr>
-     <td>Password:</td>
-     <td valign="top"><input type="password" name="password"
-         size="16" maxlength="16"/></td></tr>
-   <tr>
-     <td>Confirm password:</td>
-     <td><input type="password" name="password2" size="16" maxlength="16"/></td></tr>
-   <tr>
-     <td colspan=2 align="center">
-     <input type="submit" value="Register"></td></tr>
- </table></form>
-<?php
+	function display_registration_form() {
+	?>
+	 <form method="post" action="register_new.php">
+	 <table bgcolor="#cccccc">
+		<tr>
+	     <td>Name:</td>
+	     <td><input type="text" name="real_name" size="30" maxlength="100"/></td></tr>   
+	    <tr>
+		<tr>
+	     <td>Email address:</td>
+	     <td><input type="text" name="email" size="30" maxlength="100"/></td></tr>   
+	   <tr>
+	     <td>Password:</td>
+	     <td valign="top"><input type="password" name="password"
+	         size="16" maxlength="16"/></td></tr>
+	   <tr>
+	     <td>Confirm password:</td>
+	     <td><input type="password" name="password2" size="16" maxlength="16"/></td></tr>
+	   <tr>
+	     <td colspan=2 align="center">
+	     <input type="submit" value="Register"></td></tr>
+	 </table></form>
+	<?php
 
-}
+	}
+
+
+	function display_user_bugs($bug_array) {
+		
+		// "set global variable, so we can test later if this is on the page"
+		global $bug_table;
+		$bug_table = true;
+	?>
 	
+		<br />
+		<form name="bug_table" action="delete_bugs.php" method="post">
+		<table width="300" cellpadding="2" cellspacing="0">
+	<?php
+		$color = "#cccccc";
+		echo "<tr bgcolor=\"".$color.
+		"\"><td><strong>Bug</strong></td>";
+		echo "<td><strong>Delete?</strong></td></tr>";
+		
+		if ((is_array($bug_array)) && (count($bug_array) > 0)) {
+			foreach ($bug_array as $bug) {
+				if ($color == "#cccccc") {
+					$color = "#ffffff";
+				}
+				else {
+					$color = "#cccccc";
+				}
+				
+				echo "<tr bgcolor=\"".$color."\"><td>
+					 $bug['title']/></td>
+					</tr>";
+			}
+		}
+		else {
+			echo "<tr><td>No Bugs yet, get programming.</td></tr>";
+		}
 	
-function display_password_form() {
-  // display html change password form
-?>
-   <br />
-   <form action="change_password.php" method="post">
-   <table width="250" cellpadding="2" cellspacing="0" bgcolor="#cccccc">
-   <tr><td>Old password:</td>
-       <td><input type="password" name="old_password"
-            size="16" maxlength="16"/></td>
-   </tr>
-   <tr><td>New password:</td>
-       <td><input type="password" name="new_password"
-            size="16" maxlength="16"/></td>
-   </tr>
-   <tr><td>Repeat new password:</td>
-       <td><input type="password" name="new_password2"
-            size="16" maxlength="16"/></td>
-   </tr>
-   <tr><td colspan="2" align="center">
-       <input type="submit" value="Change password"/>
-   </td></tr>
-   </table>
-   <br />
-<?php
-}
+	?>
+		</table>
+		</form>
+	<?php	
+	}
+		
+		
+	function display_password_form() {
+	  // display html change password form
+	?>
+	   <br />
+	   <form action="change_password.php" method="post">
+	   <table width="250" cellpadding="2" cellspacing="0" bgcolor="#cccccc">
+	   <tr><td>Old password:</td>
+	       <td><input type="password" name="old_password"
+	            size="16" maxlength="16"/></td>
+	   </tr>
+	   <tr><td>New password:</td>
+	       <td><input type="password" name="new_password"
+	            size="16" maxlength="16"/></td>
+	   </tr>
+	   <tr><td>Repeat new password:</td>
+	       <td><input type="password" name="new_password2"
+	            size="16" maxlength="16"/></td>
+	   </tr>
+	   <tr><td colspan="2" align="center">
+	       <input type="submit" value="Change password"/>
+	   </td></tr>
+	   </table>
+	   <br />
+	<?php
+	}
 
 
-function display_forgot_form() {
-  // display HTML form to reset and email password
-?>
-   <br />
-   <form action="forgot_password.php" method="post">
-   <table width="250" cellpadding="2" cellspacing="0" bgcolor="#cccccc">
-   <tr><td>Enter your email address:</td>
-       <td><input type="text" name="email_adr" size="16" maxlength="16"/></td>
-   </tr>
-   <tr><td colspan=2 align="center">
-       <input type="submit" value="Change password"/>
-   </td></tr>
-   </table>
-   <br />
+	function display_forgot_form() {
+	  // display HTML form to reset and email password
+	?>
+	   <br />
+	   <form action="forgot_password.php" method="post">
+	   <table width="250" cellpadding="2" cellspacing="0" bgcolor="#cccccc">
+	   <tr><td>Enter your email address:</td>
+	       <td><input type="text" name="email_adr" size="16" maxlength="16"/></td>
+	   </tr>
+	   <tr><td colspan=2 align="center">
+	       <input type="submit" value="Change password"/>
+	   </td></tr>
+	   </table>
+	   <br />
 
-}
+	}
 
 
