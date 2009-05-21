@@ -151,6 +151,8 @@
 				
 				echo "<tr bgcolor=\"".$color."\"><td>
 					 $bug['title']/></td>
+					 <td><input type=\"checkbox\" name=\"del_me[]\"
+					 value=\"".$bug['title']."\"/></td>
 					</tr>";
 			}
 		}
@@ -162,6 +164,58 @@
 		</table>
 		</form>
 	<?php	
+	}
+	
+	function display_user_menu() {	
+	?>
+		<hr />
+		<a href="member.php">Home</a> &nbsp;|&nbsp;
+		<a href="add_bug_form.php">Add a Bug</a> &nbsp;|&nbsp;
+	<?php
+		//Only give delete option when bug table is displayed
+		global $bug_table;
+		if ($bug_table == true) {
+			echo "<a href=\"#\" onClick=\"bug_table.submit();\">
+			Delete Bug</a> &nbsp;|&nbsp;";		
+		}
+		else {
+			echo "<span style=\"color: #cccccc\">Delete Bug
+			</span> &nbsp;|&nbsp;";
+		}
+	?>
+		<a href="change_password_form.php">Change password</a>
+		<br />
+		<hr />
+		<a href="logout.php">Logout</a>
+		<hr />
+	<?php	
+	
+	}
+	
+	function display_add_bug_form() {
+	?>
+		
+		<br />
+		<form action="change_password.php" method="post">
+		<table width="250" cellpadding="2" cellspacing="0" 
+		bgcolor="#cccccc">
+		<tr><td>Bug Title:</td>
+		<td><input type="text" name="title" value="Title here.."
+				size="40" maxlength="40"/></td></tr>
+		<tr><td>Description:</td>
+		<td><input type="text" name="description" value="What's wrong.."
+				size="80" maxlength="400"/></td></tr>
+		<tr><td>Project</td>
+		<td><input type="text" name="project" 
+				size="30" maxlength="30"/></td></tr>
+		<tr><td>Project Version:</td>
+		<td><input type="text" name="project_version" 
+				size="8" maxlength="8"/></td></tr>
+		<tr><td colspan="2" align="center">
+			<input type="submit" value="Add Bug"/></td></tr>
+		</table>
+		</form>
+	<?php			
 	}
 		
 		
